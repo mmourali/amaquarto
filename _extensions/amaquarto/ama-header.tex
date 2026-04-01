@@ -1,0 +1,105 @@
+% ama-header.tex
+% Preamble for AMA journals (JM, JMR, JPPM).
+
+% ---- Font Configuration ----
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0
+  \usepackage{newtxtext}
+  \usepackage{newtxmath}
+\fi
+
+% ---- Packages ----
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+
+% ---- Caption Formatting ----
+\usepackage{caption}
+\captionsetup[table]{
+  labelsep=period,
+  justification=raggedright,
+  singlelinecheck=false,
+  font={normalsize},
+  labelfont={bf,normalsize},
+  position=above,
+  skip=4pt
+}
+\captionsetup[figure]{
+  labelsep=period,
+  justification=raggedright,
+  singlelinecheck=false,
+  font={normalsize},
+  labelfont={bf,normalsize},
+  position=below,
+  skip=4pt
+}
+
+% ---- Suppress section numbering ----
+\setcounter{secnumdepth}{0}
+
+% ---- Table/figure notes (AMA style) ----
+% Usage: \begin{amanotes} Notes: Text here. \end{amanotes}
+\newenvironment{amanotes}{%
+  \par\vskip 4pt%
+  \small\setlength{\parindent}{0pt}\noindent%
+}{%
+  \par%
+}
+
+% ---- References hanging indent (0.5 inch) ----
+\ifdefined\cslhangindent
+  \setlength{\cslhangindent}{0.5in}
+\else
+  \newlength{\cslhangindent}
+  \setlength{\cslhangindent}{0.5in}
+\fi
+
+% ---- MANUSCRIPT SETUP ----
+\newcommand{\amasetupmanuscript}{%
+  \pagestyle{empty}%
+  \doublespacing%
+  \raggedright%
+  \setlength{\parindent}{0.5in}%
+  \titleformat{\section}%
+    {\normalfont\normalsize\bfseries\centering}{}{0pt}{}%
+  \titlespacing*{\section}{0pt}{24pt}{12pt}%
+  \titleformat{\subsection}%
+    {\normalfont\normalsize\bfseries\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsection}{0pt}{24pt}{12pt}%
+  \titleformat{\subsubsection}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsubsection}{0pt}{12pt}{6pt}%
+}
+
+% ---- ARTICLE SETUP ----
+\newcommand{\amasetuparticle}{%
+  \pagestyle{fancy}%
+  \fancyhf{}%
+  \fancyfoot[C]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancypagestyle{plain}{%
+    \fancyhf{}%
+    \fancyfoot[C]{\small\thepage}%
+    \renewcommand{\headrulewidth}{0pt}%
+  }%
+  \thispagestyle{plain}%
+  \setlength{\parindent}{1.5em}%
+  % Headings: bold italic, left-aligned
+  \titleformat{\section}%
+    {\normalfont\large\bfseries\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\section}{0pt}{18pt}{6pt}%
+  \titleformat{\subsection}%
+    {\normalfont\normalsize\bfseries\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsection}{0pt}{14pt}{4pt}%
+  \titleformat{\subsubsection}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsubsection}{0pt}{10pt}{3pt}%
+  \captionsetup{font=small,labelfont={bf},textfont={}}%
+}

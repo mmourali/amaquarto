@@ -1,0 +1,218 @@
+---
+title: "Your Manuscript Title Here"
+# NOTE: AMA limits titles to 25 words.
+# ---- Authors: uncomment for non-anonymous PDF output ----
+# author:
+#   - name: First Author
+#     email: first@university.edu
+#     affiliations:
+#       - name: University Name
+#     attributes:
+#       corresponding: true
+#   - name: Second Author
+#     affiliations:
+#       - name: Another University
+# author-note: >
+#   First Author is Professor of Marketing, Department Name, University Name
+#   (email: first@university.edu). Corresponding author. Second Author is
+#   Assistant Professor of Marketing, Department Name, Another University
+#   (email: second@university.edu).
+anonymous: true
+# Set anonymous: false to show authors and author-note in the PDF.
+# Author info never appears in the DOCX (which follows AMA submission format).
+abstract: |
+  Replace this text with your abstract. The abstract is limited to 200 words
+  and summarizes the key components of the manuscript, offering the reader a
+  sample of the manuscript. The abstract should be written in third person
+  (e.g., "the authors" rather than "we").
+# NOTE: AMA limits the abstract to 200 words, written in third person.
+keywords:
+  - keyword one
+  - keyword two
+  - keyword three
+# NOTE: Include up to 8 primary keywords.
+# ---- JPPM Only: Uncomment the following for Journal of Public Policy & Marketing ----
+# policy-contribution-statement: |
+#   Succinctly articulate (1) the policy conversation that the submission
+#   initiates or to which it seeks to contribute, (2) how the manuscript
+#   moves understanding beyond existing marketing and public policy
+#   literature, and (3) what specific policy stakeholders might be impacted
+#   by the results of the inquiry and how. Max 300 words.
+format:
+  amaquarto-docx: default
+  amaquarto-pdf:
+    pdf-format: article
+    # pdf-format options:
+    #   article    - Single-column publication-style layout (default).
+    #   manuscript - Single-column submission-style layout (12pt,
+    #                double-spaced, 1-inch margins). Matches DOCX format.
+    keep-tex: true
+bibliography: bibliography.bib
+---
+
+<!--
+  AMA SUBMISSION GUIDELINES REMINDERS
+  ====================================
+
+  FILE ORGANIZATION:
+  - File 1: Title page (see title-page.qmd) -- contains author info,
+    acknowledgments, and statements/declarations.
+  - File 2: Main document (this file) -- title, abstract, keywords, main text,
+    references, and appendices. NO identifying author information.
+  - File 3 (optional): Web Appendix (see web-appendix.qmd) -- uploaded as PDF.
+
+  FORMATTING:
+  - DOCX (submission): 12pt Times New Roman, double-spaced, 1-inch margins,
+    no page numbers/headers/footers (all handled by the extension).
+  - PDF (article): 11pt, single-column, centered page numbers.
+  - PDF (manuscript): 12pt, single-column, double-spaced, 1-inch margins
+    (matches DOCX submission format, rendered as PDF).
+  - Page maximum: 50 pages inclusive of all content (applies to submission).
+
+  HEADINGS (do not number sections):
+  - Use #, ##, ### in Quarto markdown. Formatting is automatic per format:
+    DOCX/manuscript: H1 centered bold; H2 flush left, bold italic; H3 italic.
+    Article: H1 large bold italic; H2 bold italic; H3 italic.
+  - Use Title-Style Capitalization for H1 and H2.
+  - Use Sentence-style capitalization for H3.
+  - Do not use more than three heading levels.
+  - Do not label the opening section as "Introduction."
+
+  TABLES AND FIGURES:
+  - Place within the text, not at the end.
+  - Number consecutively. Refer by number (e.g., see Table 1).
+  - Table titles above, figure titles below (AMA standard).
+  - Titles should reflect the takeaway.
+  - Report actual p-values (three digits), not asterisks with thresholds.
+  - Include standard errors in tables.
+  - Figures: use Arial font, label axes, include error bars.
+  - Use ::: {.table-notes} for notes below tables/figures.
+
+  CITATIONS:
+  - In-text: (Author Year) or Author (Year).
+  - Up to three authors: list all names; four or more: first author et al.
+
+  FOOTNOTES:
+  - Use sparingly; no more than 10 footnotes, max 40 words each.
+-->
+
+<!-- Do NOT label this opening section as "Introduction." -->
+
+Social media has become an essential part of daily life, transforming the way
+consumers communicate and interact with others. Social media has also changed
+the way brands connect with consumers. With the rise of social media
+influencers, many brands use them as a marketing strategy to reach and engage
+with their target audiences. Social media influencers are individuals who have a
+large following on social media platforms and are viewed as experts in a
+particular niche. They are seen as trusted sources of information and can
+influence the purchase decisions of their followers.
+
+# Literature Review
+
+Brand loyalty is an essential aspect of marketing, as it represents the degree
+to which customers are committed to purchasing a particular brand. Brand loyalty
+is important because it leads to repeat purchases and positive word-of-mouth,
+which can lead to increased sales and profitability for the brand.[^fn1]
+
+[^fn1]: Footnotes should be used sparingly (i.e., no more than 10 footnotes)
+and must be concise (i.e., not exceeding 40 words).
+
+## Social Media Influencers and Brand Loyalty
+
+This study aims to investigate the role of social media influencers in enhancing
+brand loyalty among millennial consumers. The study focuses on millennial
+consumers because they are the most active users of social media and are
+considered an important target audience for brands.
+
+| Variable | *M* | *SD* | *n* |
+|:---------|:---:|:----:|:---:|
+| Brand loyalty | 4.21 | 1.02 | 200 |
+| Purchase intent | 3.87 | 1.15 | 200 |
+| Influencer trust | 4.56 | .89 | 200 |
+
+: Descriptive Statistics for Key Variables. {#tbl-descriptives}
+
+::: {.table-notes}
+*Notes.* Standard deviations in parentheses. All variables measured on
+7-point Likert scales.
+:::
+
+### Influencer marketing as a strategy
+
+Social media influencers can influence the purchase decisions of their followers
+by promoting products or services on their social media channels. Influencer
+marketing has become a popular marketing strategy among brands. Prior research
+has demonstrated the effectiveness of such strategies
+[@lafreniere2022; @ozturan2022].
+
+## Millennial Consumers
+
+Millennial consumers are an important target audience for brands because they
+are the largest generation in the workforce and have significant buying power.
+Several studies have investigated the role of social media influencers in
+enhancing brand loyalty among millennial consumers.
+
+# Methodology
+
+A mixed-methods approach was used to collect data, including an online survey
+and in-depth interviews. The research design follows established practices in
+the marketing literature [@gupta2023; @sridhar2023].
+
+## Data Collection
+
+### Survey design
+
+Describe the survey instrument, sampling strategy, and data collection
+procedures here.
+
+## Analysis
+
+The data were analyzed using hierarchical regression analysis. In the first
+step, we entered the control variables (age, gender, income, and education
+level). In the second step, we entered the main effects. In the third step, we
+entered the interaction terms.
+
+Equation 1 presents the baseline model specification:
+
+$$
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \epsilon_i
+$$ {#eq-baseline}
+
+Note that AMA style uses roman (upright) font for variables and does not place
+a zero before decimal points. For example, the coefficient was significant
+(*p* = .012, SE = .34).
+
+| | Attitude | | Purchase Intent | |
+|:--|:--:|:--:|:--:|:--:|
+| **Predictor** | **Model 1** | **Model 2** | **Model 1** | **Model 2** |
+| Intercept | 2.45 (.21) | 2.31 (.20) | 1.98 (.24) | 1.82 (.23) |
+| Influencer trust | .42 (.08) | .38 (.08) | .35 (.09) | .31 (.09) |
+| Brand familiarity | .28 (.07) | .25 (.07) | .22 (.08) | .19 (.08) |
+| Trust x Familiarity | | .15 (.06) | | .12 (.07) |
+| *R*^2^ | .31 | .34 | .24 | .26 |
+
+: Hierarchical Regression Results. {#tbl-regression}
+
+::: {.table-notes}
+*Notes.* Standard errors in parentheses. Actual *p*-values reported;
+no asterisk thresholds used (per AMA policy).
+:::
+
+# Results
+
+The results showed significant main effects on attitudes toward the brand and
+purchase intentions. The findings are consistent with prior theoretical
+predictions.
+
+# General Discussion
+
+Summarize findings and discuss theoretical and managerial implications.
+
+# Appendix A: Stimuli {.appendix}
+
+This appendix presents the stimuli and scenarios used in the experiment.
+
+# References {.unnumbered}
+
+::: {#refs}
+:::

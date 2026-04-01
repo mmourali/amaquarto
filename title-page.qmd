@@ -1,0 +1,77 @@
+---
+format:
+  amaquarto-docx: default
+  amaquarto-pdf:
+    pdf-format: manuscript
+    keep-tex: false
+# NOTE: The title page is a SEPARATE file from the main document.
+# It contains identifying information that must be excluded from
+# the main document to facilitate double-anonymized peer review.
+# Do NOT include 'title:' or 'abstract:' in this YAML header;
+# the title page content is placed directly in the body below.
+---
+
+```{=latex}
+\thispagestyle{empty}\pagestyle{empty}
+```
+
+::: {.center}
+**Your Manuscript Title Here**
+:::
+
+\ 
+
+::: {.noindent}
+First Author Full Name, Title, Institution, Country, email\@example.com
+
+Second Author Full Name, Title, Institution, Country, email\@example.com
+
+Third Author Full Name, Title, Institution, Country, email\@example.com
+
+\ 
+
+**Corresponding author:** First Author Full Name, Mailing Address, Phone Number, email\@example.com
+
+\ 
+
+**Author notes:** Include any relevant author notes here.
+
+\ 
+
+**Acknowledgments:** The authors thank [names] for their helpful comments and suggestions.
+:::
+
+\ 
+
+# Statements and Declarations
+
+::: {.noindent}
+
+## Ethical Considerations
+
+Add your ethics approval statements here (for more information and examples, see Sage's [publication ethics and research integrity policies page](https://www.sagepub.com/ethical-statements-msg)).
+
+## Consent to Participate
+
+Add any participant consent information here.
+
+## Declaration of Conflicting Interest
+
+The author(s) declared no potential conflicts of interest with respect to the research, authorship, and/or publication of this article.
+
+<!-- If there IS a conflict, replace the above with a description of the conflict(s). -->
+
+## Funding
+
+The author(s) received no financial support for the research, authorship, and/or publication of this article.
+
+<!-- If funding WAS received, replace the above with:
+The author(s) disclosed receipt of the following financial support for the
+research, authorship, and/or publication of this article: This work was
+supported by [funding agency] [grant number xxx]. -->
+
+## Data Availability
+
+Add your data availability statement here (for more information and examples, see [AMA's data availability statements page](https://www.ama.org/research-transparency-policy/data-availability-statements/)).
+
+:::
