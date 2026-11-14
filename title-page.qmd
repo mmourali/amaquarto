@@ -1,0 +1,19 @@
+---
+# ======================================================================
+# AMA Journals: Title Page (File 1; amaquarto 1.0.0)
+# ======================================================================
+# The title page is a separate file. It holds everything that identifies
+# the authors: names, positions, institutions, contact details, author
+# notes, acknowledgments, and the statements and declarations.
+# Edit the author information and the declarations in _title-page.yml.
+# ======================================================================
+
+title: "How Social Media Influencers Build Brand Loyalty Among Millennial Consumers"
+ama-mode: title-page
+metadata-files:
+  - _title-page.yml
+
+format:
+  amaquarto-docx: default
+  amaquarto-pdf: default
+---

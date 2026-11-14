@@ -1,0 +1,75 @@
+---
+# ======================================================================
+# AMA Journals: Web Appendix (File 3, optional; amaquarto 1.0.0)
+# ======================================================================
+# The web appendix is uploaded as a single PDF. Its first page shows the
+# words "Web Appendix," the title, a table of contents with page numbers,
+# and AMA's disclosure sentence; the extension writes all four. Tables,
+# figures, and equations are numbered W1, W2, ..., and pages are numbered
+# from 1. Leave out author names before acceptance. After acceptance, add
+#   metadata-files: [_title-page.yml]
+#   anonymous: false
+# to print the authors' names and contact details on the first page.
+# ======================================================================
+
+title: "How Social Media Influencers Build Brand Loyalty Among Millennial Consumers"
+ama-mode: web-appendix
+
+format:
+  amaquarto-pdf: default
+  amaquarto-docx: default
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+bibliography: bibliography.bib
+---
+
+# Web Appendix A: Stimuli and Measures
+
+Each section of the web appendix begins on a new page. Use the heading
+styles of the main document.
+
+## Brand Loyalty Scale
+
+@tbl-items lists the items of the brand loyalty scale.
+
+| Item                                           | M    | SD   |
+|:-----------------------------------------------|-----:|-----:|
+| I intend to keep buying this brand.            | 4.35 | 1.21 |
+| I would recommend this brand to others.        | 4.12 | 1.30 |
+| I consider myself loyal to this brand.         | 4.02 | 1.28 |
+| I would pay more for this brand than for others. | 4.33 | 1.17 |
+
+: Items of the Brand Loyalty Scale {#tbl-items}
+
+::: {.notes}
+All items were measured on seven-point scales (1 = "strongly disagree," and
+7 = "strongly agree").
+:::
+
+# Web Appendix B: Robustness Checks
+
+The results hold when the model includes demographic control variables:
+
+$$
+\text{Loyalty}_i = \beta_0 + \beta_1 \text{Trust}_i + \beta_2 \text{Familiarity}_i + \boldsymbol{\gamma}'\mathbf{Z}_i + \varepsilon_i.
+$$ {#eq-controls}
+
+@tbl-controls reports the estimates of @eq-controls. List references that
+are cited only in the web appendix at its end [@cateora1996].
+
+| Predictor         | Estimate | SE  | p    |
+|:------------------|---------:|----:|-----:|
+| Influencer trust  |      .36 | .08 | .000 |
+| Brand familiarity |      .24 | .07 | .001 |
+| Age               |      .01 | .01 | .412 |
+
+: The Effect of Influencer Trust Is Robust to Demographic Controls {#tbl-controls}
+
+# References
+
+::: {#refs}
+:::

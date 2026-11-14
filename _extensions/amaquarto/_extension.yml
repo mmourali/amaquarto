@@ -1,0 +1,81 @@
+title: AMA Journals Manuscript Format
+author: amaquarto
+version: 1.0.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    common:
+      csl: american-marketing-association.csl
+      number-sections: false
+      link-citations: true
+      tbl-cap-location: top
+      fig-cap-location: top
+      # AMA: "Table 1" and "Figure 1" in captions and in the text
+      crossref:
+        fig-title: Figure
+        tbl-title: Table
+        fig-prefix: Figure
+        tbl-prefix: Table
+        eq-prefix: Equation
+      filters:
+        - amaquarto.lua
+        - at: post-render
+          path: amaquarto-post.lua
+    pdf:
+      pdf-engine: pdflatex
+      documentclass: article
+      papersize: letter
+      fontsize: 12pt
+      linestretch: 2
+      geometry:
+        - margin=1in
+      indent: true
+      include-in-header:
+        - ama-header.tex
+      template-partials:
+        - partials/doc-class.tex
+        - partials/title.tex
+        - partials/before-body.tex
+        - partials/before-bib.tex
+      # Keep the .tex next to the PDF, so that rendering all formats at once
+      # does not delete the amaquarto-latex output
+      keep-tex: true
+      fig-pos: "H"
+      # Quarto promotes every heading by one level when sections are numbered
+      # and the .qmd file has no level-1 heading; the headings that the filter
+      # adds (on a title page, for example) would then be set as paragraphs
+      shift-heading-level-by: 0
+      # Images written without an extension use the vector PDF version
+      default-image-extension: pdf
+      colorlinks: true
+      urlcolor: "black"
+      linkcolor: "black"
+      citecolor: "black"
+    # The same document as the PDF, written as a .tex file (compile with pdflatex)
+    latex:
+      pdf-engine: pdflatex
+      default-image-extension: pdf
+      documentclass: article
+      papersize: letter
+      fontsize: 12pt
+      linestretch: 2
+      geometry:
+        - margin=1in
+      indent: true
+      include-in-header:
+        - ama-header.tex
+      template-partials:
+        - partials/doc-class.tex
+        - partials/title.tex
+        - partials/before-body.tex
+        - partials/before-bib.tex
+      fig-pos: "H"
+      shift-heading-level-by: 0
+      colorlinks: true
+      urlcolor: "black"
+      linkcolor: "black"
+      citecolor: "black"
+    docx:
+      reference-doc: ama-reference.docx
+      # Images written without an extension use the PNG version
+      default-image-extension: png

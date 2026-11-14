@@ -1,0 +1,390 @@
+% ama-header.tex (amaquarto 1.0.0)
+% Preamble for AMA journal (JM, JMR, JPP&M, JIM, JNM) manuscripts. pdfLaTeX fonts: Times for the text,
+% tables, captions, and notes; Helvetica for any sans serif text.
+
+% ---- Fonts ----
+\usepackage{mathptmx}
+\usepackage[scaled=0.92]{helvet}
+
+% ---- Quarto 1.4 (pandoc before 3.2) ----
+% Those versions wrap \paragraph and \subparagraph in a way that titlesec
+% cannot read ("Argument of \paragraph has an extra }"). The original
+% commands are put back before titlesec is loaded; the heading formats below
+% define them anew.
+\makeatletter
+\@ifundefined{xxxParagraphStar}{%
+  \@ifundefined{oldparagraph}{}{\let\paragraph\oldparagraph}%
+  \@ifundefined{oldsubparagraph}{}{\let\subparagraph\oldsubparagraph}%
+}{}
+\makeatother
+
+% ---- Packages ----
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[bottom]{footmisc}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+
+% ---- Characters typed directly ----
+% pdfLaTeX has no glyphs of its own for Greek letters and for many signs that
+% are typed as characters (a Greek alpha, a minus sign, "less than or equal").
+% In the text, Greek letters are taken upright from the Symbol font, as they
+% appear in a Word file; in formulas they are the usual math letters. The
+% other signs are set in math mode. XeLaTeX and LuaLaTeX read all of these
+% characters without help, so the definitions apply to pdfLaTeX only.
+\usepackage{iftex}
+\usepackage{pifont}
+\ifPDFTeX
+\providecommand{\texorpdfstring}[2]{#1}
+\newcommand{\amagreek}[3]{\texorpdfstring{\TextOrMath{\Pisymbol{psy}{#1}}{#2}}{#3}}
+\newcommand{\amasign}[1]{\texorpdfstring{\ensuremath{#1}}{}}
+\DeclareUnicodeCharacter{03B1}{\amagreek{97}{\alpha}{alpha}}
+\DeclareUnicodeCharacter{03B2}{\amagreek{98}{\beta}{beta}}
+\DeclareUnicodeCharacter{03B3}{\amagreek{103}{\gamma}{gamma}}
+\DeclareUnicodeCharacter{03B4}{\amagreek{100}{\delta}{delta}}
+\DeclareUnicodeCharacter{03B5}{\amagreek{101}{\varepsilon}{epsilon}}
+\DeclareUnicodeCharacter{03F5}{\amagreek{101}{\epsilon}{epsilon}}
+\DeclareUnicodeCharacter{03B6}{\amagreek{122}{\zeta}{zeta}}
+\DeclareUnicodeCharacter{03B7}{\amagreek{104}{\eta}{eta}}
+\DeclareUnicodeCharacter{03B8}{\amagreek{113}{\theta}{theta}}
+\DeclareUnicodeCharacter{03D1}{\amagreek{74}{\vartheta}{theta}}
+\DeclareUnicodeCharacter{03B9}{\amagreek{105}{\iota}{iota}}
+\DeclareUnicodeCharacter{03BA}{\amagreek{107}{\kappa}{kappa}}
+\DeclareUnicodeCharacter{03BB}{\amagreek{108}{\lambda}{lambda}}
+\DeclareUnicodeCharacter{03BC}{\amagreek{109}{\mu}{mu}}
+\DeclareUnicodeCharacter{03BD}{\amagreek{110}{\nu}{nu}}
+\DeclareUnicodeCharacter{03BE}{\amagreek{120}{\xi}{xi}}
+\DeclareUnicodeCharacter{03BF}{\amagreek{111}{o}{o}}
+\DeclareUnicodeCharacter{03C0}{\amagreek{112}{\pi}{pi}}
+\DeclareUnicodeCharacter{03D6}{\amagreek{118}{\varpi}{pi}}
+\DeclareUnicodeCharacter{03C1}{\amagreek{114}{\rho}{rho}}
+\DeclareUnicodeCharacter{03C2}{\amagreek{86}{\varsigma}{sigma}}
+\DeclareUnicodeCharacter{03C3}{\amagreek{115}{\sigma}{sigma}}
+\DeclareUnicodeCharacter{03C4}{\amagreek{116}{\tau}{tau}}
+\DeclareUnicodeCharacter{03C5}{\amagreek{117}{\upsilon}{upsilon}}
+\DeclareUnicodeCharacter{03C6}{\amagreek{106}{\varphi}{phi}}
+\DeclareUnicodeCharacter{03D5}{\amagreek{102}{\phi}{phi}}
+\DeclareUnicodeCharacter{03C7}{\amagreek{99}{\chi}{chi}}
+\DeclareUnicodeCharacter{03C8}{\amagreek{121}{\psi}{psi}}
+\DeclareUnicodeCharacter{03C9}{\amagreek{119}{\omega}{omega}}
+\DeclareUnicodeCharacter{0391}{\amagreek{65}{\mathrm{A}}{A}}
+\DeclareUnicodeCharacter{0392}{\amagreek{66}{\mathrm{B}}{B}}
+\DeclareUnicodeCharacter{0393}{\amagreek{71}{\Gamma}{Gamma}}
+\DeclareUnicodeCharacter{0394}{\amagreek{68}{\Delta}{Delta}}
+\DeclareUnicodeCharacter{2206}{\amagreek{68}{\Delta}{Delta}}
+\DeclareUnicodeCharacter{0395}{\amagreek{69}{\mathrm{E}}{E}}
+\DeclareUnicodeCharacter{0396}{\amagreek{90}{\mathrm{Z}}{Z}}
+\DeclareUnicodeCharacter{0397}{\amagreek{72}{\mathrm{H}}{H}}
+\DeclareUnicodeCharacter{0398}{\amagreek{81}{\Theta}{Theta}}
+\DeclareUnicodeCharacter{0399}{\amagreek{73}{\mathrm{I}}{I}}
+\DeclareUnicodeCharacter{039A}{\amagreek{75}{\mathrm{K}}{K}}
+\DeclareUnicodeCharacter{039B}{\amagreek{76}{\Lambda}{Lambda}}
+\DeclareUnicodeCharacter{039C}{\amagreek{77}{\mathrm{M}}{M}}
+\DeclareUnicodeCharacter{039D}{\amagreek{78}{\mathrm{N}}{N}}
+\DeclareUnicodeCharacter{039E}{\amagreek{88}{\Xi}{Xi}}
+\DeclareUnicodeCharacter{039F}{\amagreek{79}{\mathrm{O}}{O}}
+\DeclareUnicodeCharacter{03A0}{\amagreek{80}{\Pi}{Pi}}
+\DeclareUnicodeCharacter{03A1}{\amagreek{82}{\mathrm{P}}{P}}
+\DeclareUnicodeCharacter{03A3}{\amagreek{83}{\Sigma}{Sigma}}
+\DeclareUnicodeCharacter{03A4}{\amagreek{84}{\mathrm{T}}{T}}
+\DeclareUnicodeCharacter{03A5}{\amagreek{85}{\Upsilon}{Upsilon}}
+\DeclareUnicodeCharacter{03A6}{\amagreek{70}{\Phi}{Phi}}
+\DeclareUnicodeCharacter{03A7}{\amagreek{67}{\mathrm{X}}{X}}
+\DeclareUnicodeCharacter{03A8}{\amagreek{89}{\Psi}{Psi}}
+\DeclareUnicodeCharacter{03A9}{\amagreek{87}{\Omega}{Omega}}
+\DeclareUnicodeCharacter{2212}{\texorpdfstring{\ensuremath{-}}{-}}
+\DeclareUnicodeCharacter{2264}{\amasign{\leq}}
+\DeclareUnicodeCharacter{2265}{\amasign{\geq}}
+\DeclareUnicodeCharacter{2260}{\amasign{\neq}}
+\DeclareUnicodeCharacter{2248}{\amasign{\approx}}
+\DeclareUnicodeCharacter{2261}{\amasign{\equiv}}
+\DeclareUnicodeCharacter{223C}{\amasign{\sim}}
+\DeclareUnicodeCharacter{2245}{\amasign{\cong}}
+\DeclareUnicodeCharacter{221D}{\amasign{\propto}}
+\DeclareUnicodeCharacter{2213}{\amasign{\mp}}
+\DeclareUnicodeCharacter{2217}{\amasign{\ast}}
+\DeclareUnicodeCharacter{22C5}{\amasign{\cdot}}
+\DeclareUnicodeCharacter{2219}{\amasign{\bullet}}
+\DeclareUnicodeCharacter{221A}{\amasign{\surd}}
+\DeclareUnicodeCharacter{221E}{\amasign{\infty}}
+\DeclareUnicodeCharacter{2211}{\amasign{\sum}}
+\DeclareUnicodeCharacter{220F}{\amasign{\prod}}
+\DeclareUnicodeCharacter{222B}{\amasign{\int}}
+\DeclareUnicodeCharacter{2202}{\amasign{\partial}}
+\DeclareUnicodeCharacter{2207}{\amasign{\nabla}}
+\DeclareUnicodeCharacter{2208}{\amasign{\in}}
+\DeclareUnicodeCharacter{2209}{\amasign{\notin}}
+\DeclareUnicodeCharacter{2282}{\amasign{\subset}}
+\DeclareUnicodeCharacter{2286}{\amasign{\subseteq}}
+\DeclareUnicodeCharacter{2229}{\amasign{\cap}}
+\DeclareUnicodeCharacter{222A}{\amasign{\cup}}
+\DeclareUnicodeCharacter{2205}{\amasign{\emptyset}}
+\DeclareUnicodeCharacter{2200}{\amasign{\forall}}
+\DeclareUnicodeCharacter{2203}{\amasign{\exists}}
+\DeclareUnicodeCharacter{2227}{\amasign{\wedge}}
+\DeclareUnicodeCharacter{2228}{\amasign{\vee}}
+\DeclareUnicodeCharacter{2032}{\amasign{{}^{\prime}}}
+\DeclareUnicodeCharacter{2033}{\amasign{{}^{\prime\prime}}}
+\DeclareUnicodeCharacter{2194}{\amasign{\leftrightarrow}}
+\DeclareUnicodeCharacter{21D2}{\amasign{\Rightarrow}}
+\DeclareUnicodeCharacter{21D0}{\amasign{\Leftarrow}}
+\DeclareUnicodeCharacter{21D4}{\amasign{\Leftrightarrow}}
+\DeclareUnicodeCharacter{2197}{\amasign{\nearrow}}
+\DeclareUnicodeCharacter{2198}{\amasign{\searrow}}
+\DeclareUnicodeCharacter{25CF}{\amasign{\bullet}}
+\DeclareUnicodeCharacter{25CB}{\amasign{\circ}}
+\DeclareUnicodeCharacter{25A0}{\amasign{\blacksquare}}
+\DeclareUnicodeCharacter{25A1}{\amasign{\square}}
+\DeclareUnicodeCharacter{25B2}{\amasign{\blacktriangle}}
+\DeclareUnicodeCharacter{25B3}{\amasign{\triangle}}
+\DeclareUnicodeCharacter{25BC}{\amasign{\blacktriangledown}}
+\DeclareUnicodeCharacter{2605}{\amasign{\bigstar}}
+\DeclareUnicodeCharacter{2606}{\texorpdfstring{\ding{73}}{}}
+\DeclareUnicodeCharacter{2023}{\amasign{\triangleright}}
+\DeclareUnicodeCharacter{2713}{\texorpdfstring{\ding{51}}{}}
+\DeclareUnicodeCharacter{2714}{\texorpdfstring{\ding{52}}{}}
+\DeclareUnicodeCharacter{2717}{\texorpdfstring{\ding{55}}{}}
+\DeclareUnicodeCharacter{2718}{\texorpdfstring{\ding{56}}{}}
+\DeclareUnicodeCharacter{2070}{\textsuperscript{0}}
+\DeclareUnicodeCharacter{2074}{\textsuperscript{4}}
+\DeclareUnicodeCharacter{2075}{\textsuperscript{5}}
+\DeclareUnicodeCharacter{2076}{\textsuperscript{6}}
+\DeclareUnicodeCharacter{2077}{\textsuperscript{7}}
+\DeclareUnicodeCharacter{2078}{\textsuperscript{8}}
+\DeclareUnicodeCharacter{2079}{\textsuperscript{9}}
+\DeclareUnicodeCharacter{207A}{\textsuperscript{+}}
+\DeclareUnicodeCharacter{207B}{\textsuperscript{\ensuremath{-}}}
+\DeclareUnicodeCharacter{2080}{\textsubscript{0}}
+\DeclareUnicodeCharacter{2081}{\textsubscript{1}}
+\DeclareUnicodeCharacter{2082}{\textsubscript{2}}
+\DeclareUnicodeCharacter{2083}{\textsubscript{3}}
+\DeclareUnicodeCharacter{2084}{\textsubscript{4}}
+\DeclareUnicodeCharacter{2085}{\textsubscript{5}}
+\DeclareUnicodeCharacter{2086}{\textsubscript{6}}
+\DeclareUnicodeCharacter{2087}{\textsubscript{7}}
+\DeclareUnicodeCharacter{2088}{\textsubscript{8}}
+\DeclareUnicodeCharacter{2089}{\textsubscript{9}}
+\DeclareUnicodeCharacter{2153}{\textsuperscript{1}/\textsubscript{3}}
+\DeclareUnicodeCharacter{2154}{\textsuperscript{2}/\textsubscript{3}}
+\DeclareUnicodeCharacter{2060}{\nobreak}
+\DeclareUnicodeCharacter{FB00}{ff}
+\DeclareUnicodeCharacter{FB01}{fi}
+\DeclareUnicodeCharacter{FB02}{fl}
+\DeclareUnicodeCharacter{FB03}{ffi}
+\DeclareUnicodeCharacter{FB04}{ffl}
+\fi
+
+% ---- Tables: single spaced, in the text font ----
+% \setstretch{1} rather than \singlespacing, which adds a blank line
+\AtBeginEnvironment{table}{\normalsize\setstretch{1}}
+\AtBeginEnvironment{table*}{\normalsize\setstretch{1}}
+\AtBeginEnvironment{longtable}{\normalsize\setstretch{1}}
+% Space above a table title, and less space between a table and its note
+\setlength{\LTpre}{18pt}
+\setlength{\LTpost}{6pt}
+% A table that fits on a page is not split: \amakeep{height} starts a new
+% page when less than that height is left on the current page
+\newcommand{\amakeep}[1]{%
+  \par\ifdim\pagetotal>0pt\ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax\newpage\fi\fi}
+
+% A table or a figure without a label takes no number. LaTeX counts every
+% title, and pandoc 3.2 (in Quarto 1.5) counts every table, with or without
+% one; the counter is put back afterward, so that the numbers agree with the
+% Word file, and a title is printed without "Table 1" before it.
+\newcounter{amasaved}
+\newcounter{amaplain}
+\newcommand{\amaplainbegin}[1]{\setcounter{amasaved}{\value{#1}}\stepcounter{amaplain}%
+  \begingroup\ifdefined\captionsetup\captionsetup{format=plain,labelformat=empty,labelsep=none}\fi%
+  \expandafter\def\csname theH#1\endcsname{plain.\arabic{amaplain}}}
+\newcommand{\amaplainend}[1]{\endgroup\setcounter{#1}{\value{amasaved}}}
+
+% ---- Captions ----
+% "Table 1: Title." and "Figure 1: Title." centered above the table or figure,
+% in the text font and size, as in AMA's sample document
+\usepackage[labelsep=colon,labelfont={},textfont={},font={rm,normalsize,singlespacing},
+            justification=centering,singlelinecheck=false,skip=6pt]{caption}
+\captionsetup[table]{position=above}
+\captionsetup[figure]{position=above}
+% The captions of the panels of a figure: "(a) Text", centered, in the type
+% of the text. (Quarto loads the subcaption package when a document has a
+% figure with panels.)
+\makeatletter
+\AtBeginDocument{\@ifpackageloaded{subcaption}{%
+  \captionsetup[sub]{font={rm,normalsize,singlespacing},labelfont={},textfont={},
+    labelformat=parens,labelsep=space,justification=centering,singlelinecheck=false,skip=4pt}}{}}
+\makeatother
+% The caption of a picture in a panel without a number: the same, without a letter
+\newcommand{\amapanelcaption}[1]{{\captionsetup{font={rm,normalsize,singlespacing},labelfont={},
+    textfont={},justification=centering,singlelinecheck=false,skip=4pt}\caption*{#1}}}
+
+% ---- No underlining ----
+\renewcommand{\underline}[1]{#1}
+
+% ---- Notes under tables and figures ----
+% Written in the .qmd file as a ::: {.notes} div; the filter adds the label
+\newenvironment{amanotes}{%
+  \par\nopagebreak[4]\vskip 4pt%
+  \begingroup\normalsize\setstretch{1}\raggedright
+  \setlength{\parindent}{0pt}\setlength{\parskip}{2pt}%
+}{%
+  \par\endgroup\vskip 6pt%
+}
+
+% ---- Hypotheses: indented, with 12 pt of space above and below ----
+% Written in the .qmd file as a ::: {.hypothesis} div; the filter sets the
+% label ("H1:") in bold. \addvspace keeps the space single between two
+% hypotheses in a row.
+\newenvironment{amahypothesis}{%
+  \par\addvspace{12pt}\begingroup\setlength{\parindent}{0pt}%
+  \setlength{\leftskip}{0.5in}%
+}{%
+  \par\endgroup\addvspace{12pt}%
+}
+
+% ---- Centered text, unindented text, and "insert table here" lines ----
+\newenvironment{amacentered}{\par\begingroup\centering\setlength{\parindent}{0pt}}{\par\endgroup}
+\newenvironment{amaflush}{\par\begingroup\setlength{\parindent}{0pt}}{\par\endgroup}
+\newenvironment{amacallout}{%
+  \par\addvspace{0.5\baselineskip}\begingroup\centering\setlength{\parindent}{0pt}%
+}{%
+  \par\endgroup\addvspace{0.5\baselineskip}%
+}
+
+% ---- References: half-inch hanging indent ----
+\ifdefined\cslhangindent
+  \setlength{\cslhangindent}{0.5in}
+\else
+  \newlength{\cslhangindent}
+  \setlength{\cslhangindent}{0.5in}
+\fi
+\newenvironment{amareferences}{\par\begingroup}{\par\endgroup}
+
+% ---- Statistics helpers ----
+\newcommand{\Mstat}[1]{\ensuremath{M = #1}}
+\newcommand{\SDstat}[1]{\ensuremath{\text{SD} = #1}}
+\newcommand{\pval}[1]{\ensuremath{p = #1}}
+\newcommand{\Fstat}[3]{\ensuremath{F(#1, #2) = #3}}
+\newcommand{\tstat}[2]{\ensuremath{t(#1) = #2}}
+\newcommand{\chisq}[2]{\ensuremath{\chi^2(#1) = #2}}
+\newcommand{\CI}[2]{95\% CI [#1, #2]}
+
+% ---- Front matter (the filter places the text in these environments) ----
+% Title: centered and bold, in the text size
+\newenvironment{amatitle}{\par\begingroup\centering\bfseries\setlength{\parindent}{0pt}}{\par\endgroup}
+% Heading of the abstract and of the policy contribution statement
+\newenvironment{amafronthead}{\par\begingroup\centering\bfseries\setlength{\parindent}{0pt}}{\par\endgroup}
+% Abstract and keywords: flush left
+\newenvironment{amaabstract}{\par\begingroup\setlength{\parindent}{0pt}}{\par\endgroup}
+\newenvironment{amakeywords}{\par\begingroup\setlength{\parindent}{0pt}}{\par\endgroup}
+% Title page: author lines centered, details flush left, statements single
+% spaced
+\newenvironment{amaauthors}{\par\begingroup\centering\setlength{\parindent}{0pt}}{\par\endgroup}
+\newenvironment{amafrontlines}{\par\begingroup\setlength{\parindent}{0pt}}{\par\endgroup}
+\newenvironment{amastatements}{%
+  \par\begingroup\setstretch{1}\setlength{\parindent}{0pt}\setlength{\parskip}{6pt}%
+  \titlespacing*{\subsection}{0pt}{12pt}{0pt}%
+}{\par\endgroup}
+% Web appendix: disclosure, table of contents with page numbers, and page
+% numbers that begin with 1
+\newenvironment{amadisclosure}{%
+  \par\vspace{2\baselineskip}\begingroup\setlength{\parindent}{0pt}%
+}{\par\endgroup}
+\makeatletter
+\newcommand{\amatableofcontents}{%
+  \begingroup
+  \renewcommand{\l@section}{\@dottedtocline{1}{0em}{0em}}%
+  \setcounter{tocdepth}{1}%
+  \@starttoc{toc}%
+  \endgroup}
+\makeatother
+\newcommand{\amasetupwebappendix}{%
+  \pagestyle{fancy}\fancyhf{}\renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[R]{\thepage}%
+  \fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[R]{\thepage}}%
+  \thispagestyle{fancy}\setcounter{page}{1}}
+
+% ---- MANUSCRIPT SETUP (submission format) ----
+% Double spaced (linestretch), left justified, no page numbers, headers, or
+% footers. Primary headings: centered and bold, with an extra return before
+% and after. Secondary: flush left, bold italic. Tertiary: flush left,
+% italic, on its own line.
+\newcommand{\amasetupmanuscript}{%
+  \pagestyle{empty}%
+  \thispagestyle{empty}%
+  \raggedright%
+  \setlength{\parindent}{0.5in}%
+  % Footnotes in the 12-point type of the text, single spaced, as in AMA's
+  % Word template
+  \renewcommand{\footnotelayout}{\normalsize\setstretch{1}}%
+  \titleformat{\section}%
+    {\normalfont\normalsize\bfseries\centering}{}{0pt}{}%
+  \titlespacing*{\section}{0pt}{\baselineskip}{\baselineskip}%
+  \titleformat{\subsection}%
+    {\normalfont\normalsize\bfseries\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsection}{0pt}{0pt}{0pt}%
+  \titleformat{\subsubsection}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsubsection}{0pt}{0pt}{0pt}%
+  % AMA uses three levels; deeper headings are set like the third
+  \titleformat{\paragraph}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\paragraph}{0pt}{0pt}{0pt}%
+  \titleformat{\subparagraph}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subparagraph}{0pt}{0pt}{0pt}%
+}
+
+% ---- ARTICLE SETUP (publication-style preview; not for submission) ----
+\newcommand{\amasetuparticle}{%
+  \pagestyle{fancy}%
+  \fancyhf{}%
+  \fancyfoot[C]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancypagestyle{plain}{%
+    \fancyhf{}%
+    \fancyfoot[C]{\small\thepage}%
+    \renewcommand{\headrulewidth}{0pt}%
+  }%
+  \thispagestyle{plain}%
+  \setlength{\parindent}{1.5em}%
+  \titleformat{\section}%
+    {\normalfont\large\bfseries\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\section}{0pt}{18pt}{6pt}%
+  \titleformat{\subsection}%
+    {\normalfont\normalsize\bfseries\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsection}{0pt}{14pt}{4pt}%
+  \titleformat{\subsubsection}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subsubsection}{0pt}{10pt}{3pt}%
+  \titleformat{\paragraph}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\paragraph}{0pt}{10pt}{3pt}%
+  \titleformat{\subparagraph}%
+    {\normalfont\normalsize\itshape\raggedright}{}{0pt}{}%
+  \titlespacing*{\subparagraph}{0pt}{10pt}{3pt}%
+  \captionsetup{font=small}%
+}
+\newenvironment{amaarttitle}{%
+  \par\begingroup\fontsize{16}{19}\selectfont\bfseries\raggedright\setlength{\parindent}{0pt}%
+}{\par\endgroup\vskip 10pt}
+\newenvironment{amaartauthors}{%
+  \par\begingroup\centering\normalsize\bfseries\setlength{\parindent}{0pt}%
+}{\par\endgroup\vskip 6pt}
+\newenvironment{amaartabstract}{%
+  \par\noindent\textbf{Abstract}\par\vskip 4pt\begingroup\small\setlength{\parindent}{0pt}%
+}{\par\endgroup\vskip 8pt}
+\newenvironment{amaartkeywords}{%
+  \par\begingroup\small\setlength{\parindent}{0pt}%
+}{\par\endgroup\vskip 8pt}
+\newcommand{\amaartrule}{%
+  \vskip 0.8\baselineskip\noindent\rule{\textwidth}{0.4pt}\vskip 0.8\baselineskip}
+\makeatletter
+\newcommand{\amaauthornote}[1]{%
+  \begingroup\def\@makefnmark{}%
+  \footnotetext{\fontsize{8}{10}\selectfont\raggedright #1}\endgroup}
+\makeatother

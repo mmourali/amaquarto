@@ -1,0 +1,233 @@
+---
+# ======================================================================
+# AMA Journals: Main Document (amaquarto 1.0.0)
+# Journal of Marketing, Journal of Marketing Research, Journal of Public
+# Policy & Marketing, Journal of International Marketing, Journal of
+# Interactive Marketing
+# ======================================================================
+# OUTPUT FORMATS (listed under format: below; render one or all):
+#   amaquarto-pdf    PDF typeset with pdflatex (AMA asks authors who write
+#                    in LaTeX to upload a PDF)
+#   amaquarto-docx   Word manuscript (the format AMA asks for otherwise)
+#   amaquarto-latex  The .tex source of the PDF (AMA asks for all LaTeX
+#                    files after acceptance)
+#
+# AMA asks for at least two files: the title page (title-page.qmd) and this
+# main document, which must not identify the authors. The web appendix
+# (web-appendix.qmd) is optional.
+#
+# Every option is described in the README at github.com/mmourali/amaquarto.
+# ======================================================================
+
+title: "How Social Media Influencers Build Brand Loyalty Among Millennial Consumers"
+
+# --- Mode: manuscript (the main document) or article (a publication-style
+#     preview for sharing drafts; PDF and .tex only) ---
+ama-mode: manuscript
+
+# --- Abstract (at most 200 words, in the third person) ---
+abstract: |
+  Social media has changed the way brands connect with consumers. With the
+  rise of social media influencers, many brands use them to reach and
+  engage their target audiences. This research investigates the role of
+  social media influencers in building brand loyalty among millennial
+  consumers. The authors use a mixed-methods approach that combines an
+  online survey with in-depth interviews. The findings suggest that
+  influencers strengthen brand loyalty, and that this effect is larger for
+  familiar brands. The research offers guidance on how brands can work with
+  influencers to connect with their target audiences.
+
+# --- Keywords (up to 8) ---
+keywords:
+  - social media
+  - influencers
+  - brand loyalty
+  - millennial consumers
+  - marketing strategy
+
+# --- Journal of Public Policy & Marketing only (at most 300 words) ---
+# policy-contribution-statement: |
+#   State (1) the policy conversation that the submission initiates or to
+#   which it contributes, (2) how the manuscript moves understanding beyond
+#   the existing marketing and public policy literature, and (3) which
+#   policy stakeholders might be affected by the results and how.
+
+format:
+  amaquarto-pdf: default
+  amaquarto-docx: default
+  amaquarto-latex: default
+
+execute:
+  echo: false
+  warning: false
+  message: false
+
+fig-dpi: 300
+
+# Citations such as [@lafreniere2022] are formatted by the extension's AMA
+# style file
+bibliography: bibliography.bib
+---
+
+Social media has become an essential part of daily life, and it has changed
+the way consumers communicate with one another. It has also changed the way
+brands connect with consumers. Many brands now work with social media
+influencers to reach and engage their target audiences. Influencers have a
+large following on social media platforms and are viewed as experts in a
+particular niche. Followers see them as trusted sources of information, and
+influencers can shape their followers' purchase decisions.
+
+# Theoretical Background
+
+Brand loyalty represents the degree to which customers are committed to
+purchasing a particular brand. Loyalty matters because it leads to repeat
+purchases and positive word of mouth, which in turn increase sales and
+profitability.[^fn1] Language also shapes how consumers respond to
+recommendations [@lafreniere2022; @ozturan2022].
+
+[^fn1]: Use footnotes sparingly (most articles have no more than 10), and
+keep each footnote to 40 words or fewer.
+
+## Social Media Influencers and Brand Loyalty
+
+Influencers can strengthen brand loyalty by providing valuable content and
+by engaging with their followers. This research focuses on millennial
+consumers because they are the most active users of social media.
+
+::: {.hypothesis}
+H~1~: Trust in an influencer increases loyalty to the brands that the
+influencer endorses.
+:::
+
+::: {.hypothesis}
+H~2~: The effect of trust in an influencer on brand loyalty is stronger for
+familiar brands than for unfamiliar brands.
+:::
+
+## Millennial Consumers
+
+Millennial consumers are an important target audience because they are the
+largest generation in the workforce and have substantial buying power.
+Research in marketing has examined how scholarship in the field develops
+and is evaluated [@gupta2023; @sridhar2023].
+
+# Study 1
+
+## Method
+
+### Participants and design
+
+Two hundred members of an online panel (51.0% female, 47.5% male, 1.0%
+nonbinary, .5% preferred not to state) completed the survey. Participants
+rated their trust in an influencer they follow, their familiarity with a
+brand the influencer endorses, and their loyalty to that brand.
+
+### Measures
+
+All measures used seven-point scales. @tbl-descriptives reports descriptive
+statistics.
+
+| Variable         | M    | SD   | n   |
+|:-----------------|-----:|-----:|----:|
+| Brand loyalty^a^ | 4.21 | 1.02 | 200 |
+| Purchase intent  | 3.87 | 1.15 | 200 |
+| Influencer trust | 4.56 |  .89 | 200 |
+
+: Loyalty and Trust Are Above the Scale Midpoint {#tbl-descriptives}
+
+::: {.notes}
+^a^Average of four items.
+
+All variables were measured on seven-point scales.
+:::
+
+## Results
+
+Equation 1 presents the model:
+
+$$
+\text{Loyalty}_i = \beta_0 + \beta_1 \text{Trust}_i + \beta_2 \text{Familiarity}_i + \beta_3 \text{Trust}_i \times \text{Familiarity}_i + \varepsilon_i.
+$$ {#eq-model}
+
+Trust in the influencer was positively associated with brand loyalty
+(b = .38, SE = .08, *p* < .001), and this association was stronger for
+familiar brands (b = .15, SE = .06, *p* = .013; @tbl-regression and
+@fig-loyalty).
+
+| Predictor              | Model 1    | Model 2    |
+|:-----------------------|:----------:|:----------:|
+| Intercept              | 2.45 (.21) | 2.31 (.20) |
+| Influencer trust       |  .42 (.08) |  .38 (.08) |
+| Brand familiarity      |  .28 (.07) |  .25 (.07) |
+| Trust × Familiarity    |            |  .15 (.06) |
+| R^2^                   |  .31       |  .34       |
+
+: Influencer Trust Predicts Brand Loyalty {#tbl-regression}
+
+::: {.notes}
+Unstandardized coefficients, with standard errors in parentheses. The text
+reports the *p*-values.
+:::
+
+```{r}
+#| label: fig-loyalty
+#| fig-cap: "Influencer Trust Increases Loyalty More for Familiar Brands"
+#| fig-width: 6
+#| fig-height: 3.6
+
+library(ggplot2)
+
+# Estimated means and standard errors from Model 2
+loyalty <- data.frame(
+  trust = factor(rep(c("Low Trust", "High Trust"), times = 2),
+                 levels = c("Low Trust", "High Trust")),
+  familiarity = rep(c("Unfamiliar brand", "Familiar brand"), each = 2),
+  mean = c(3.62, 4.05, 3.80, 4.88),
+  se = c(.14, .13, .14, .12)
+)
+
+# AMA: Arial in figures, both axes labeled, error bars, the full scale range
+ggplot(loyalty, aes(x = trust, y = mean, fill = familiarity)) +
+  geom_col(position = position_dodge(width = .7), width = .6, color = "black") +
+  geom_errorbar(aes(ymin = mean - se, ymax = mean + se),
+                position = position_dodge(width = .7), width = .15) +
+  geom_text(aes(y = mean + se, label = sprintf("%.2f", mean)),
+            position = position_dodge(width = .7), vjust = -.6, size = 3.5,
+            family = "sans") +
+  scale_fill_manual(values = c("grey35", "grey80")) +
+  scale_y_continuous(limits = c(1, 7), breaks = 1:7, oob = scales::oob_keep) +
+  coord_cartesian(ylim = c(1, 7)) +
+  labs(x = "Trust in the Influencer", y = "Brand Loyalty", fill = NULL) +
+  theme_classic(base_size = 12, base_family = "sans") +
+  theme(legend.position = "bottom")
+```
+
+::: {.notes}
+Error bars represent ±1 SE.
+:::
+
+# General Discussion
+
+The findings indicate that influencers can strengthen brand loyalty among
+millennial consumers and that familiar brands benefit the most. The Web
+Appendix reports the stimuli (Web Appendix A) and robustness checks (Web
+Appendix B).
+
+## Theoretical Implications
+
+Summarize the contribution to theory here.
+
+## Managerial Implications
+
+Summarize the implications for practice here.
+
+# References
+
+::: {#refs}
+:::
+
+# Appendix: Survey Items {.appendix}
+
+This appendix lists the items of the brand loyalty scale. An appendix begins
+on a new page after the references. Label a single appendix "Appendix" and
+several appendixes "Appendix A," "Appendix B," and so on.
